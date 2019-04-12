@@ -10,4 +10,5 @@ urlpatterns = [
     path('<username>/info/', UserDetailView.as_view()),
     path('<username>/javagochis/', JavagochiOwnedView.as_view()),
     path('<username>/items/', OwnedItemView.as_view()),
+    path('<username>/change/', ChangeUserInfoView.as_view()),
 ]

@@ -3,7 +3,7 @@ from items.models import OwnedItem, BaseItem
 from users.models import CustomUser
 from users.scripts import increase_user_level
 from items.scripts import use_item_and_save
-from consts import MAX_JAVAGOCHI_LEVEL
+from consts import *
 
 def increase_javagochi_level(javagochi, amount_to_increase):
     print(("Increasing experience of {} by {} (starting from {})").format(javagochi.nickname, str(amount_to_increase), javagochi.current_experience))

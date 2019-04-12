@@ -5,7 +5,7 @@ from users.models import CustomUser, ExpMap
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('username', 'level', 'exp', 'coins', 'image')
+        fields = ('username', 'level', 'exp', 'coins', 'image', 'email')
 
 class ExpMapSerializer(serializers.ModelSerializer):
     class Meta:

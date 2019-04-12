@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.generics import RetrieveAPIView, ListAPIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView, UpdateAPIView
 
 from users.models import CustomUser, ExpMap
 from javagochi.models import Javagochi
@@ -18,6 +18,28 @@ class UserDetailView(RetrieveAPIView):
         url_username = self.kwargs['username']
         user = queryset.get(username=url_username)
         return user
+
+class ChangeUserInfoView(UpdateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
+    def update(self, request, *args, **kwargs):
+        new_username = request.data['username']
+        new_email = request.data['email']
+        new_password = request.data['password']
+        print(new_username)
+        print(new_email)
+        print(new_password)
+        print(kwargs)
+        queryset = self.filter_queryset(self.get_queryset())
+        user = queryset.get(username=kwargs['username'])
+        user.username = new_username
+        user.email = new_email
+        if(new_password):
+            user.set_password(new_password)
+        user.save()
+        return Response("Successfully updated the info!", status=status.HTTP_200_OK)
+
 
 class UserExpMapView(ListAPIView):
     queryset = ExpMap.objects.all()
