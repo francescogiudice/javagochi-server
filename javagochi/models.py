@@ -3,7 +3,7 @@ from users.models import CustomUser
 
 class JavagochiBase(models.Model):
     image = models.ImageField(upload_to='javagochi_bases/')
-    race = models.CharField(max_length = 256, primary_key = True)
+    race = models.CharField(max_length=256, primary_key=True)
     max_health = models.IntegerField()
     max_hunger = models.IntegerField()
     max_cold = models.IntegerField()
@@ -13,6 +13,9 @@ class JavagochiBase(models.Model):
     min_user_level = models.IntegerField()
     exp_on_buy = models.IntegerField()
 
+    evolves_into = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    evolves_at = models.IntegerField(blank=True, null=True)
+
     def __str__(self):
         return self.race
 
@@ -21,10 +24,10 @@ class JavagochiBaseManager(models.Manager):
         return self.get(race=race, image=image)
 
 class Javagochi(models.Model):
-    race = models.ForeignKey(JavagochiBase, on_delete = models.CASCADE, blank=False)
-    owner = models.ForeignKey(CustomUser, on_delete = models.CASCADE, blank=False)
+    race = models.ForeignKey(JavagochiBase, on_delete=models.CASCADE, blank=False)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=False)
 
-    nickname = models.CharField(max_length = 256)
+    nickname = models.CharField(max_length=256)
     current_health = models.IntegerField()
     current_hunger = models.IntegerField()
     current_cold = models.IntegerField()

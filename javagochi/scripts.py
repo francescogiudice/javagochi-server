@@ -5,6 +5,11 @@ from users.scripts import increase_user_level
 from items.scripts import use_item_and_save
 from consts import *
 
+def check_if_evolves(javagochi):
+    if(javagochi.current_level >= javagochi.race.evolves_at):
+        javagochi.race = javagochi.race.evolves_into
+        javagochi.save()
+
 def increase_javagochi_level(javagochi, amount_to_increase):
     print(("Increasing experience of {} by {} (starting from {})").format(javagochi.nickname, str(amount_to_increase), javagochi.current_experience))
     if(javagochi.current_level >= MAX_JAVAGOCHI_LEVEL):
@@ -13,11 +18,18 @@ def increase_javagochi_level(javagochi, amount_to_increase):
 
     needed_exp = JavagochiExpMap.objects.get(level=javagochi.current_level)
 
+    # If there is enough experience to move to the next level, increase the current_level
+    # and add the remaining experience. Otherwise just increase the experience
     if(javagochi.current_experience + amount_to_increase >= needed_exp.exp_for_next_level):
         javagochi.current_level += 1
+        # Add coins reward to user
         user = javagochi.owner
         user.coins += needed_exp.coins_reward
         user.save()
+        # Checks if needs to evolve
+        if(javagochi.race.evolves_into):
+            check_if_evolves(javagochi)
+        # Adds the leftover experience
         new_amount = amount_to_increase - (needed_exp.exp_for_next_level - javagochi.current_experience)
         javagochi.current_experience = 0
         javagochi.save()
