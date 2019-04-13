@@ -15,27 +15,31 @@ logger = get_task_logger(__name__)
 def update_javagochis():
     logger.info("Starting Javagochis update...")
 
-    for javagochi in Javagochi.objects.all():
+    for javagochi in Javagochi.objects.filter(owner__is_superuser=False):
         logger.info("Updating " + javagochi.nickname)
 
         # Increase hunger
         javagochi.current_hunger = min(javagochi.current_hunger + 10, javagochi.race.max_hunger)
         if(javagochi.current_hunger >= javagochi.race.max_hunger):
             take_damage(javagochi, 10)  # TODO make this parametric
+            if(javagochi.current_health <= 0):
+                return
 
         # Increase hot
         javagochi.current_hot = min(javagochi.current_hot + 10, javagochi.race.max_hot)
         if(javagochi.current_hot >= javagochi.race.max_hot):
             take_damage(javagochi, 10)  # TODO make this parametric
+            if(javagochi.current_health <= 0):
+                return
 
         # Increase cold
         javagochi.current_cold = min(javagochi.current_cold + 10, javagochi.race.max_cold)
         if(javagochi.current_cold >= javagochi.race.max_cold):
             take_damage(javagochi, 10)  # TODO make this parametric
+            if(javagochi.current_health <= 0):
+                return
 
         # Increase age
         javagochi.current_age += 1
         if(javagochi.current_age >= javagochi.race.max_age):
-            take_damage(javagochi, javagochi.current_health)
-
-        javagochi.save()
+            javagochi.delete()
