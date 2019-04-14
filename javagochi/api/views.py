@@ -66,7 +66,7 @@ class JavagochiBuyView(CreateAPIView):
             jc.save()
             return Response("Correctly added the javagochi to your list", status=status.HTTP_201_CREATED)
         elif(user.level < race.min_user_level):
-            return Response("You are not experienced enough to have this Javagochi!", status=status.HTTP_403_FORBIDDEN)
+            return Response("You are not experienced enough to have this Javagochi", status=status.HTTP_403_FORBIDDEN)
         else:
             return Response("Not enough money", status=status.HTTP_400_BAD_REQUEST)
 
@@ -78,5 +78,7 @@ class UseItemView(UpdateAPIView):
         jc_id = kwargs['id']
         item = request.data['item']
         user = request.data['user']
-        scripts.use_item(jc_id, item, user)
-        return Response("Successfully used the item!", status=status.HTTP_200_OK)
+        if(scripts.use_item(jc_id, item, user)):
+            return Response("Successfully used the item", status=status.HTTP_200_OK)
+        else:
+            return Respons("Not enough items", status=status.HTTP_400_BAD_REQUEST)

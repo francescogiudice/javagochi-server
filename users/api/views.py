@@ -38,7 +38,7 @@ class ChangeUserInfoView(UpdateAPIView):
         if(new_password):
             user.set_password(new_password)
         user.save()
-        return Response("Successfully updated the info!", status=status.HTTP_200_OK)
+        return Response("Successfully updated the info", status=status.HTTP_200_OK)
 
 
 class UserExpMapView(ListAPIView):

@@ -78,3 +78,6 @@ def use_item(javagochi_id, item_name, username):
         func(javagochi, owned_item)
         increase_user_level(user, item_type.user_exp_on_use)
         increase_javagochi_level(javagochi, item_type.jc_exp_on_use)
+        return True
+    else:
+        return False
