@@ -59,7 +59,8 @@ INSTALLED_APPS = [
 
     'javagochi',
     'users',
-    'items'
+    'items',
+    'trades'
 ]
 SITE_ID = 1
 

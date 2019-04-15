@@ -5,9 +5,11 @@ from rest_framework.generics import RetrieveAPIView, ListAPIView, UpdateAPIView
 from users.models import CustomUser, ExpMap
 from javagochi.models import Javagochi
 from items.models import OwnedItem
+from trades.models import TradeOffer
 from .serializers import CustomUserSerializer, ExpMapSerializer
 from javagochi.api.serializers import JavagochiSerializer
 from items.api.serializers import OwnedItemSerializer
+from trades.api.serializers import TradeOfferSerializer
 
 class UserListView(ListAPIView):
     queryset = CustomUser.objects.all()
@@ -68,3 +70,11 @@ class OwnedItemView(ListAPIView):
     def get_queryset(self):
         owner = self.kwargs['username']
         return OwnedItem.objects.filter(owner__username=owner)
+
+class UserTradesView(ListAPIView):
+    queryset = TradeOffer.objects.all()
+    serializer_class = TradeOfferSerializer
+
+    def get_queryset(self):
+        user = self.kwargs['username']
+        return TradeOffer.objects.filter(offering__owner__username=user)

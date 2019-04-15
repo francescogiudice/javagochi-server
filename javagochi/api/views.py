@@ -56,7 +56,7 @@ class JavagochiBuyView(CreateAPIView):
                        current_cold = 0,
                        current_hot = 0,
                        current_age = 0,
-                       current_level = 0,
+                       current_level = 1,
                        current_experience = 0)
 
         if(user.coins >= race.cost and user.level >= race.min_user_level):

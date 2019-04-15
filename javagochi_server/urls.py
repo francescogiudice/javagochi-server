@@ -25,5 +25,6 @@ urlpatterns = [
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('api/javagochi/', include('javagochi.api.urls')),
     path('api/users/', include('users.api.urls')),
-    path('api/items/', include('items.api.urls'))
+    path('api/items/', include('items.api.urls')),
+    path('api/trades/', include('trades.api.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
