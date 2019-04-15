@@ -9,6 +9,10 @@ from .serializers import CustomUserSerializer, ExpMapSerializer
 from javagochi.api.serializers import JavagochiSerializer
 from items.api.serializers import OwnedItemSerializer
 
+class UserListView(ListAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
 class UserDetailView(RetrieveAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
