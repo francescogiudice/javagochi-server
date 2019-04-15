@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+from celery.schedules import crontab
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -146,7 +147,7 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.CustomUser'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_REQURED = False
+ACCOUNT_EMAIL_REQUIRED = False
 
 # CELERY
 BROKER_URL = 'redis://localhost:6379'
@@ -155,6 +156,16 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
+
+
+# Let's make things happen
+# CELERY_BEAT_SCHEDULE = {
+#  'update_javagochis': {
+#        'task': 'javagochi.tasks.update_javagochis',
+#         # There are 4 ways we can handle time, read further
+#        'schedule': 10.0,
+#     }
+# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
