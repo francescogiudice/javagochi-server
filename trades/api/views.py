@@ -1,7 +1,7 @@
 from datetime import datetime
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
 
 from trades.models import TradeOffer
 from .serializers import TradeOfferSerializer
@@ -37,3 +37,17 @@ class StartTradeView(CreateAPIView):
         trade = TradeOffer(offering=offered, interested_into=interested_into, started=started)
         trade.save()
         return Response("Your Javagochi is now being traded", status=status.HTTP_201_CREATED)
+
+class CloseTradeView(DestroyAPIView):
+    queryset = TradeOffer.objects.all()
+    serializer_class = TradeOfferSerializer
+
+    def get_queryset(self):
+        queryset = TradeOffer.objects.filter(id=self.kwargs['id'])
+        return queryset
+
+    def destroy(self, request, *args, **kwargs):
+        print(self.kwargs)
+        trade = TradeOffer.objects.filter(id=self.kwargs['id']).first()
+        self.perform_destroy(trade)
+        return Response("Eliminated trade", status=status.HTTP_200_OK)
