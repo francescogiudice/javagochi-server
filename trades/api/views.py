@@ -1,6 +1,7 @@
+from datetime import datetime
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.generics import ListAPIView, RetrieveAPIViewm, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 
 from trades.models import TradeOffer
 from .serializers import TradeOfferSerializer
@@ -29,9 +30,10 @@ class StartTradeView(CreateAPIView):
         offered_id = self.request.data['offered_id']
         interested_into_race = self.request.data['interested_into']
 
-        offered = Javagochi.objects.filter(id=offered_id)
-        interested_into = JavagochiBase.objects.filter(race=interested_into_race)
+        offered = Javagochi.objects.filter(id=offered_id).first()
+        interested_into = JavagochiBase.objects.filter(race=interested_into_race).first()
+        started = datetime.now()
 
-        trade = Trade(offered=offered, interested_into=interested_into)
+        trade = TradeOffer(offering=offered, interested_into=interested_into, started=started)
         trade.save()
-        return Respone("Trade started", status=status.HTTP_201_CREATED)
+        return Response("Your Javagochi is now being traded", status=status.HTTP_201_CREATED)
