@@ -4,6 +4,7 @@ from users.models import CustomUser
 class JavagochiBase(models.Model):
     image = models.ImageField(upload_to='javagochi_bases/')
     race = models.CharField(max_length=256, primary_key=True)
+    strength = models.IntegerField(default=50)
     max_health = models.IntegerField()
     max_hunger = models.IntegerField()
     max_cold = models.IntegerField()

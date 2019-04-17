@@ -82,3 +82,16 @@ class UseItemView(UpdateAPIView):
             return Response("Successfully used the item", status=status.HTTP_200_OK)
         else:
             return Respons("Not enough items", status=status.HTTP_400_BAD_REQUEST)
+
+class JavagochiChallengeView(UpdateAPIView):
+    queryset = Javagochi.objects.all()
+    serializer_class = JavagochiSerializer
+
+    def update(self, request, *args, **kwargs):
+        print(request.data)
+        id_challenger = request.data['id_challenger']
+        id_challenged = kwargs['id']
+        challenger = Javagochi.objects.filter(id=id_challenger).first()
+        challenged = Javagochi.objects.filter(id=id_challenged).first()
+        message = scripts.challenge_result(challenger, challenged)
+        return Response(message, status=status.HTTP_200_OK)

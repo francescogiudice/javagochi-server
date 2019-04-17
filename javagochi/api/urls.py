@@ -8,7 +8,8 @@ from .views import (
     ParticularJavagochiOwnedView,
     UseItemView,
     JavagochiExpMapView,
-    JavagochiExpMapDetailView
+    JavagochiExpMapDetailView,
+    JavagochiChallengeView
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('<pk>/', JavagochiBaseDetailView.as_view()),
     path('owned/<id>/', ParticularJavagochiOwnedView.as_view()),
     path('owned/<id>/useitem/', UseItemView.as_view()),
+    path('<id>/challenge/', JavagochiChallengeView.as_view())
 ]

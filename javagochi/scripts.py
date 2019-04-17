@@ -81,3 +81,15 @@ def use_item(javagochi_id, item_name, username):
         return True
     else:
         return False
+
+def challenge_result(challenger, challenged):
+    if(challenged.race.strength > challenger.race.strength):
+        challenger.owner = challenged.owner
+        challenger.save()
+        return "Your Javagochi lost the battle. You lost your Javagochi!"
+    if(challenger.race.strength > challenged.race.strength):
+        challenged.owner = challenger.owner
+        challenged.save()
+        return "Your Javagochi won the battle. You aquired your opponent's Javagochi!"
+    else:
+        return "The battle result was a draw..."
