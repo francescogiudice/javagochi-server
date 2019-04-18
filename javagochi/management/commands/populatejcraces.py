@@ -5,7 +5,7 @@ import pandas as pd
 import os
 from javagochi_server.settings import BASE_DIR
 
-FILE_NAME = "Javagochi classes.xlsx"
+FILE_NAME = "Dbinfo.xlsx"
 SPRITES_NAME_DIR = "sprites"
 
 file = os.path.join(BASE_DIR, FILE_NAME)

@@ -1,5 +1,5 @@
-MAX_USER_LEVEL = 25
-MAX_JAVAGOCHI_LEVEL = 20
+MAX_USER_LEVEL = 50
+MAX_JAVAGOCHI_LEVEL = 50
 
 # Prevents superusers' Javagochis to take damage. Set to False to disabilitate
 KILL_ALL = True
