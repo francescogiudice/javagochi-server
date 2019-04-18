@@ -11,18 +11,6 @@ SPRITES_NAME_DIR = "sprites"
 file = os.path.join(BASE_DIR, FILE_NAME)
 sprites_dir = os.path.join(BASE_DIR, SPRITES_NAME_DIR)
 
-# At index 0 there is a table that indicates the stats of the Javagochis in this order:
-# -1: Name
-# -2: Health
-# -3: Hunger
-# -4: Cold
-# -5: Hot
-# -6: Age
-# -7: Evolves at
-# -8: Evolves into
-# -9: Coins needed
-# -10: Min. user level
-
 class Command(BaseCommand):
     help = 'Populates the database. The excel file and the sprites folder need to be located at the root directory. If not you need to indicate the location with -f and -s respectively'
 

@@ -15,7 +15,6 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('-f', '--file', type=str, help='Define the file location', )
-        parser.add_argument('-s', '--sprites', type=str, help='Define the sprites location', )
 
     def create_javagochi(self, df, index):
         nickname = df['Nickname'][index]
