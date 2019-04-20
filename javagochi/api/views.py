@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView
+from rest_framework import permissions
 
 from javagochi.models import JavagochiBase, Javagochi, JavagochiExpMap
 from .serializers import JavagochiSerializer, JavagochiBaseSerializer, JavagochiExpMapSerializer
@@ -10,10 +11,12 @@ from users.scripts import *
 from javagochi import scripts
 
 class JavagochiBaseListView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = JavagochiBase.objects.all()
     serializer_class = JavagochiBaseSerializer
 
 class JavagochiBaseDetailView(RetrieveAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = JavagochiBase.objects.all()
     serializer_class = JavagochiBaseSerializer
 

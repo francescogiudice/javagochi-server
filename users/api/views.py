@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView, ListAPIView, UpdateAPIView
+from rest_framework import permissions
 
 from users.models import CustomUser, ExpMap
 from javagochi.models import Javagochi
@@ -12,6 +13,7 @@ from items.api.serializers import OwnedItemSerializer
 from trades.api.serializers import TradeOfferSerializer
 
 class UserListView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
@@ -60,6 +62,7 @@ class JavagochiOwnedView(ListAPIView):
     serializer_class = JavagochiSerializer
 
     def get_queryset(self):
+        print(self.request)
         owner = self.kwargs['username']
         return Javagochi.objects.filter(owner__username=owner)
 

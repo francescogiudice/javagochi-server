@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework import permissions
 
 from items.models import BaseItem, OwnedItem
 from .serializers import BaseItemSerializer, OwnedItemSerializer
@@ -8,10 +9,12 @@ from users.models import CustomUser
 from users.scripts import increase_user_level
 
 class BaseItemListView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = BaseItem.objects.all()
     serializer_class = BaseItemSerializer
 
 class BaseItemDetailView(RetrieveAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = BaseItem.objects.all()
     serializer_class = BaseItemSerializer
 
