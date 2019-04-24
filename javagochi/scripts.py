@@ -1,3 +1,5 @@
+from random import randint
+
 from javagochi.models import Javagochi, JavagochiExpMap
 from items.models import OwnedItem, BaseItem
 from users.models import CustomUser
@@ -83,11 +85,28 @@ def use_item(javagochi_id, item_name, username):
         return False
 
 def challenge_result(challenger, challenged):
-    if(challenged.race.strength > challenger.race.strength):
+
+    challenger_str = challenger.race.strength
+    challenged_str = challenged.race.strength
+
+    #checking weakness for the challenged javagpchi
+    if(challenged.race.type.weakness == challenger.race.type.type):
+        challenger_str = challenger_str*2
+
+    #checking weakness for the challenger javagpchi
+    if(challenger.race.type.weakness == challenged.race.type.type):
+        challenged_str = challenged_str*2
+
+    #"rolling dice" for the javagochi
+    challenger_str += randint(1, 50)
+    challenged_str += randint(1, 50)
+
+    #checking the highest strength to determine the winning javagochi
+    if(challenged_str > challenger_str):
         challenger.owner = challenged.owner
         challenger.save()
         return "Your Javagochi lost the battle. You lost your Javagochi!"
-    if(challenger.race.strength > challenged.race.strength):
+    elif(challenger_str > challenged_str):
         challenged.owner = challenger.owner
         challenged.save()
         return "Your Javagochi won the battle. You aquired your opponent's Javagochi!"

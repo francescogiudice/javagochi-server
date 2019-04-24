@@ -1,9 +1,17 @@
 from django.db import models
 from users.models import CustomUser
 
+class JavagochiType(models.Model):
+    type = models.CharField(max_length=256, primary_key=True)
+    weakness = models.CharField(max_length=256, blank=True, null=True)
+
+    def __str__(self):
+        return self.type
+
 class JavagochiBase(models.Model):
     image = models.ImageField(upload_to='javagochi_bases/')
     race = models.CharField(max_length=256, primary_key=True)
+    type = models.ForeignKey(JavagochiType, on_delete=models.CASCADE, blank=True, null=True)
     strength = models.IntegerField(default=50)
     max_health = models.IntegerField()
     max_hunger = models.IntegerField()
