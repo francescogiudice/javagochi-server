@@ -26,6 +26,12 @@ HOT_N_COLD_PER_SEASON = {
     }
 }
 
+# Fight details
+STRONG_VS_MULTIPLIER = 2
+LEVELS_LOST_ON_BATTLE = 5
+USER_EXP_GAINED_ON_BATTLE = 500
+JC_EXP_GAINED_ON_BATTLE = 1000
+
 # Email details
 EMAIL_SUBJECT = 'Your Javagochi is suffering!'
 EMAIL_CONTENT = 'Help! Your Javagochi {} is suffering and is about to die!'

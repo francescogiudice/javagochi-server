@@ -89,24 +89,36 @@ def challenge_result(challenger, challenged):
     challenger_str = challenger.race.strength
     challenged_str = challenged.race.strength
 
-    #checking weakness for the challenged javagpchi
+    # Checking weakness for the challenged javagpchi
     if(challenged.race.type.weakness == challenger.race.type.type):
-        challenger_str = challenger_str*2
+        challenger_str = challenger_str*STRONG_VS_MULTIPLIER
 
-    #checking weakness for the challenger javagpchi
+    # Checking weakness for the challenger javagpchi
     if(challenger.race.type.weakness == challenged.race.type.type):
-        challenged_str = challenged_str*2
+        challenged_str = challenged_str*STRONG_VS_MULTIPLIER
 
-    #"rolling dice" for the javagochi
+    # "rolling dice" for the javagochi
     challenger_str += randint(1, 50)
     challenged_str += randint(1, 50)
 
-    #checking the highest strength to determine the winning javagochi
+    # Checking the highest strength to determine the winning javagochi
     if(challenged_str > challenger_str):
+        # Decrease the user level
+        user_challenging = challenger.owner
+        user_challenging.level = max(1, user_challenging.level - LEVELS_LOST_ON_BATTLE)
+        user_challenging.save()
+        # Swap the owner of the Javagochi
         challenger.owner = challenged.owner
         challenger.save()
         return "Your Javagochi lost the battle. You lost your Javagochi!"
     elif(challenger_str > challenged_str):
+        # Increase the user level
+        user_challenging = challenger.owner
+        increase_user_level(user_challenging, USER_EXP_GAINED_ON_BATTLE)
+        user_challenging.save()
+        # Increase the javagochi level
+        increase_javagochi_level(challenger, JC_EXP_GAINED_ON_BATTLE)
+        # Swap the owner of the Javagochi
         challenged.owner = challenger.owner
         challenged.save()
         return "Your Javagochi won the battle. You aquired your opponent's Javagochi!"
