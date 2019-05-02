@@ -7,6 +7,14 @@ from trades.models import TradeOffer
 from .serializers import TradeOfferSerializer
 from javagochi.models import Javagochi, JavagochiBase
 
+class SomeTradeOffersListView(ListAPIView):
+    queryset = TradeOffer.objects.all()
+    serializer_class = TradeOfferSerializer
+
+    def get_queryset(self):
+        user = self.kwargs['username']
+        return TradeOffer.objects.exclude(offering__owner__username=user)
+
 class TradeOffersListView(ListAPIView):
     queryset = TradeOffer.objects.all()
     serializer_class = TradeOfferSerializer
