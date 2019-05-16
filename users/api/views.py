@@ -12,6 +12,15 @@ from javagochi.api.serializers import JavagochiSerializer
 from items.api.serializers import OwnedItemSerializer
 from trades.api.serializers import TradeOfferSerializer
 
+class SomeUsersListView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        url_username = self.kwargs['username']
+        return CustomUser.objects.exclude(username=url_username)
+
 class UserListView(ListAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = CustomUser.objects.all()
