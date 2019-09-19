@@ -26,7 +26,7 @@ SECRET_KEY = '$k(ae!3_o$jg4j_z+309l2l4mk3%yzce*v8&m#k^e#f$!aaaa+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 REST_FRAMEWORK = {
