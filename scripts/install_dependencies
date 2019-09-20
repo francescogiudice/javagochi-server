@@ -1,5 +1,4 @@
 #!/bin/bash
-pip install -r requirements.txt
-pip install django django-extensions
-python3 manage.py makemigrations
-python3 manage.py migrate
+wget "https://github.com/francescogiudice/javagochi-server/archive/master.zip"
+unzip 'javagochi-server-master.zip'
+cd ./javagochi-server-master
