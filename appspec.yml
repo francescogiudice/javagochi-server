@@ -3,6 +3,11 @@ os: linux
 files:
   - source: /
     destination: /var/www/
+permissions:
+  - object: /var/www/
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
 hooks:
   ApplicationStart:
     - location: scripts/start_server
