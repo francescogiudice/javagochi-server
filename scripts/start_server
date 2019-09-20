@@ -1,5 +1,4 @@
 #!/bin/bash
-cd /var/www/
 pip install -r requirements
 python3 manage.py makemigrations
 python3 manage.py migrate
