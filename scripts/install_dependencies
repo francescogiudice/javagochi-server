@@ -1,4 +1,4 @@
 #!/bin/bash
 wget "https://github.com/francescogiudice/javagochi-server/archive/master.zip"
 unzip 'javagochi-server-master.zip'
-cd ./javagochi-server-master
+#!cd ./javagochi-server-master
