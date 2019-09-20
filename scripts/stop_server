@@ -1,2 +1,2 @@
 #!/bin/bash
-rmdir -rm /var/www/javagochi-server-master/
+rm -rfv /var/www/javagochi-server-master/
