@@ -11,13 +11,13 @@ permissions:
 hooks:
   ApplicationStop:
     - location: scripts/stop_server
-      timeout: 1000
+      timeout: 60
       runas: root
   AfterInstall:
     - location: scripts/install_dependencies
-      timeout: 1000
+      timeout: 60
       runas: root
   ApplicationStart:
     - location: scripts/start_server
-      timeout: 1000
+      timeout: 60
       runas: root
