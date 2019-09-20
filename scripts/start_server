@@ -4,3 +4,4 @@ cd /var/www/javagochi-server-master/
 sudo python manage.py makemigrations
 sudo python manage.py migrate
 sudo python manage.py runserver
+service httpd start
