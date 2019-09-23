@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /var/www/javagochi-server-master/
-#!pip install -r requirements
-#!python manage.py makemigrations
-#!python manage.py migrate
-#!python manage.py runserver
-service httpd start
+sudo pip install -r requirements
+sudo python3 manage.py makemigrations
+sudo python3 manage.py migrate
+sudo python3 manage.py runserver
+#!service httpd start
