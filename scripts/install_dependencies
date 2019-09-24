@@ -2,3 +2,7 @@
 #!wget "https://github.com/francescogiudice/javagochi-server/archive/master.zip"
 #!unzip 'javagochi-server-master.zip'
 #!cd ./javagochi-server-master
+cd /var/www/javagochi-server-master/
+sudo pip install -r requirements
+sudo python3 manage.py makemigrations
+sudo python3 manage.py migrate
