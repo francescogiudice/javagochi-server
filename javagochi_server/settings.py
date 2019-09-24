@@ -80,7 +80,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    '0.0.0.0:3000/'
+    'http://0.0.0.0:3000/'
 )
 
 ROOT_URLCONF = 'javagochi_server.urls'
