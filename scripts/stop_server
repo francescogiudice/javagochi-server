@@ -1,4 +1,5 @@
-#!/bin/bash
-shopt -s dotglob
-sudo rmdir  --ignore-fail-on-non-empty /var/www/javagochi-server-master/__pycache__
-sudo rm -r /var/www/javagochi-server-master/*
+# !/bin/bash
+
+# shopt -s dotglob
+# sudo rmdir  --ignore-fail-on-non-empty /var/www/javagochi-server-master/__pycache__
+# sudo rm -r /var/www/javagochi-server-master/*
