@@ -2,15 +2,15 @@ from django.db import models
 from users.models import CustomUser
 
 class JavagochiType(models.Model):
-    type = models.CharField(max_length=256, primary_key=True)
-    weakness = models.CharField(max_length=256, blank=True, null=True)
+    type = models.CharField(max_length=255, primary_key=True)
+    weakness = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.type
 
 class JavagochiBase(models.Model):
     image = models.ImageField(upload_to='javagochi_bases/')
-    race = models.CharField(max_length=256, primary_key=True)
+    race = models.CharField(max_length=255, primary_key=True)
     type = models.ForeignKey(JavagochiType, on_delete=models.CASCADE, blank=True, null=True)
     strength = models.IntegerField(default=50)
     max_health = models.IntegerField()
@@ -36,7 +36,7 @@ class Javagochi(models.Model):
     race = models.ForeignKey(JavagochiBase, on_delete=models.CASCADE, blank=False)
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=False)
 
-    nickname = models.CharField(max_length=256)
+    nickname = models.CharField(max_length=255)
     current_health = models.IntegerField()
     current_hunger = models.IntegerField()
     current_cold = models.IntegerField()

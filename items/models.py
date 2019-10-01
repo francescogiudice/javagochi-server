@@ -3,8 +3,8 @@ from users.models import CustomUser
 
 class BaseItem(models.Model):
     image = models.ImageField(upload_to='items/')
-    name = models.CharField(max_length = 256, primary_key = True)
-    property_modified = models.CharField(max_length = 256)
+    name = models.CharField(max_length = 255, primary_key = True)
+    property_modified = models.CharField(max_length = 255)
     amount_modified = models.IntegerField()
     cost = models.IntegerField()
     exp_on_buy = models.IntegerField()
