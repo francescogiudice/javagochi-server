@@ -109,8 +109,12 @@ WSGI_APPLICATION = 'javagochi_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'database-1',
+        'USER': '',
+        'PASSWORD': 'Javagochi',
+        'HOST': 'database-1.c163edi6ju0y.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -155,6 +159,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 
 # CELERY
+# fix url
 BROKER_URL = 'redis://54.226.199.227:6379'
 CELERY_RESULT_BACKEND = 'redis://54.226.199.227:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
