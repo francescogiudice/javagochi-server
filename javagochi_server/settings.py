@@ -113,7 +113,7 @@ DATABASES = {
         'NAME': 'jc_database',
         'USER': 'postgres',
         'PASSWORD': 'Javagochi',
-        'HOST': 'arn:aws:rds:us-east-1:119729521685:db:jc-database',
+        'HOST': 'jc-database.c163edi6ju0y.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
