@@ -111,7 +111,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'database-1',
-        'USER': '',
+        'USER': 'root',
         'PASSWORD': 'Javagochi',
         'HOST': 'database-1.c163edi6ju0y.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
