@@ -109,11 +109,11 @@ WSGI_APPLICATION = 'javagochi_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jc_database',
-        'USER': 'admin',
+        'USER': 'postgres',
         'PASSWORD': 'Javagochi',
-        'HOST': 'jc-database.c163edi6ju0y.us-east-1.rds.amazonaws.com',
+        'HOST': 'arn:aws:rds:us-east-1:119729521685:db:jc-database',
         'PORT': '3306',
     }
 }
