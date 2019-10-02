@@ -114,7 +114,7 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': 'Javagochi',
         'HOST': 'mongodb://admin:Javagochi@184.73.41.239:27017/admin',
-        'PORT': '27017',
+        'PORT': 27017,
     }
 }
 
