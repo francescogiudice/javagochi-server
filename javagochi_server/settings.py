@@ -107,14 +107,21 @@ WSGI_APPLICATION = 'javagochi_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'admin',
+#         'USER': 'admin',
+#         'PASSWORD': 'Javagochi',
+#         'HOST': 'mongodb://admin:Javagochi@184.73.41.239:27017/admin',
+#         'PORT': 27017,
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'admin',
-        'USER': 'admin',
-        'PASSWORD': 'Javagochi',
-        'HOST': 'mongodb://admin:Javagochi@184.73.41.239:27017/admin',
-        'PORT': 27017,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
