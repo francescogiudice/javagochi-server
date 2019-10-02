@@ -98,8 +98,8 @@ def challenge_result(challenger, challenged):
         challenged_str = challenged_str*STRONG_VS_MULTIPLIER
 
     # "rolling dice" for the javagochi
-    challenger_str += randint(1, 50)
-    challenged_str += randint(1, 50)
+    challenger_str += randint(1, 100)
+    challenged_str += randint(1, 100)
 
     # Checking the highest strength to determine the winning javagochi
     if(challenged_str > challenger_str):
