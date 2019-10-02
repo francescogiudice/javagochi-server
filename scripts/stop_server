@@ -1,6 +1,0 @@
-# !/bin/bash
-
-sudo touch /var/www/javagochi-server-master/test.txt
-
-sudo mkdir /var/www/javagochi-server-master/__pycache__
-sudo rm -rf /var/www/javagochi-server-master/__pycache__

@@ -9,10 +9,6 @@ permissions:
     owner: ubuntu
     group: ubuntu
 hooks:
-  ApplicationSop:
-    - location: scripts/stop_server
-      timeout: 60
-      runas: root
   AfterInstall:
     - location: scripts/install_dependencies
       timeout: 600
