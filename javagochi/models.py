@@ -33,8 +33,8 @@ class JavagochiBaseManager(models.Manager):
         return self.get(race=race, image=image)
 
 class Javagochi(models.Model):
-    race = models.ForeignKey(JavagochiBase, on_delete=models.CASCADE, blank=False)
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=False)
+    race = models.ForeignKey(JavagochiBase.race, on_delete=models.CASCADE, blank=False)
+    owner = models.ForeignKey(CustomUser.username, on_delete=models.CASCADE, blank=False)
 
     nickname = models.CharField(max_length=255)
     current_health = models.IntegerField()
