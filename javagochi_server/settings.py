@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'javagochi_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django-mongodb-engine',
+        'ENGINE': 'django_mongodb_engine',
         'NAME': 'admin',
         'USER': 'admin',
         'PASSWORD': 'Javagochi',
