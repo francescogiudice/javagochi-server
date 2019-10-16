@@ -98,7 +98,7 @@ class IsUsernameAvailable(ListAPIView):
 
     def get_queryset(self):
         username = self.kwargs['username']
-        return CustomUser.objects.exist(username)
+        return CustomUser.objects.exists(username)
 
 class IsEmailAvailable(ListAPIView):
     permission_classes = (permissions.AllowAny,)
@@ -107,4 +107,4 @@ class IsEmailAvailable(ListAPIView):
 
     def get_queryset(self):
         email = self.kwargs['email']
-        return CustomUser.objects.exist(email)
+        return CustomUser.objects.exists(email)
