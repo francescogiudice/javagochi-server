@@ -15,5 +15,5 @@ urlpatterns = [
     path('<username>/trades/', UserTradesView.as_view()),
     path('<username>/change/', ChangeUserInfoView.as_view()),
     path('<username>/isavailable/', IsUsernameAvailable.as_view()),
-    path('<email>/isavailable/', IsEmailAvailable.as_view()),
+    path('<email>/isemailavailable/', IsEmailAvailable.as_view()),
 ]
