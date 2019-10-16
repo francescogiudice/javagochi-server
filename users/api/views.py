@@ -97,8 +97,8 @@ class IsUsernameAvailable(ListAPIView):
     serializer_class = CustomUserSerializer
 
     def get_queryset(self):
-        username = self.kwargs['username']
-        return CustomUser.objects.exists(username)
+        user = self.kwargs['username']
+        return CustomUser.objects.filter(username=user).exists()
 
 class IsEmailAvailable(ListAPIView):
     permission_classes = (permissions.AllowAny,)
@@ -106,5 +106,5 @@ class IsEmailAvailable(ListAPIView):
     serializer_class = CustomUserSerializer
 
     def get_queryset(self):
-        email = self.kwargs['email']
-        return CustomUser.objects.exists(email)
+        e_mail = self.kwargs['email']
+        return CustomUser.objects.filter(email=e_mail).exists()
