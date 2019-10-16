@@ -90,3 +90,21 @@ class UserTradesView(ListAPIView):
     def get_queryset(self):
         user = self.kwargs['username']
         return TradeOffer.objects.filter(offering__owner__username=user)
+
+class IsUsernameAvailable(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return CustomUser.objects.exist(username)
+
+class IsEmailAvailable(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        email = self.kwargs['email']
+        return CustomUser.objects.exist(email)
