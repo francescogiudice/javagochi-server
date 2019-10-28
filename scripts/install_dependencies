@@ -1,6 +1,6 @@
-#!/bin/bash
+# !/bin/bash
 
-cd /var/www/javagochi-server-master/
-sudo pip install -r requirements
-sudo python3 manage.py makemigrations
-sudo python3 manage.py migrate
+# cd /var/www/javagochi-server-master/
+# sudo pip install -r requirements
+# sudo python3 manage.py makemigrations
+# sudo python3 manage.py migrate
