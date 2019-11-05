@@ -1,5 +1,6 @@
 # !/bin/bash
 
+sudo rm -rf /var/www/javagochi-server-master/
 # cd /var/www/javagochi-server-master/
 # sudo pip install -r requirements
 # sudo python3 manage.py makemigrations
