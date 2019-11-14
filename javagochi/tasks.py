@@ -30,7 +30,7 @@ def get_hot_n_cold_increase():
 logger = get_task_logger(__name__)
 
 @periodic_task(
-    run_every=timedelta(seconds=10),
+    run_every=timedelta(seconds=1800),
     name="update_javagochis",
     ignore_result=True
 )
