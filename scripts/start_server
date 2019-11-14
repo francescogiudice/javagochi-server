@@ -3,5 +3,6 @@
 
 cd /var/www/javagochi-server-master/
 sudo python3 manage.py runserver 0.0.0.0:8000 > /dev/null 2> /dev/null < /dev/null &
-celery -A picha worker -l info > /dev/null 2> /dev/null < /dev/null &
-celery -A picha beat -l info > /dev/null 2> /dev/null < /dev/null &
+redis-server > /dev/null 2> /dev/null < /dev/null &
+celery -A javagochi_server worker -l info > /dev/null 2> /dev/null < /dev/null &
+celery -A javagochi_server beat -l info > /dev/null 2> /dev/null < /dev/null &
