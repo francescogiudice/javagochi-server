@@ -2,4 +2,6 @@
 # !/bin/bash
 
 ps -ef | grep runserver | grep -v grep | awk '{print $2}' | sudo xargs kill
+ps -ef | grep celery | grep -v grep | awk '{print $2}' | sudo xargs kill
+ps -ef | grep redis | grep -v grep | awk '{print $2}' | sudo xargs kill
 sudo rm -rf /var/www/javagochi-server-master/
