@@ -1,18 +1,42 @@
 from django.test import TestCase
-from users.models import CustomUser
-from users.scripts import increase_user_level
 from django.test import Client
 
-class TestScripts(TestCase):
+from rest_framework import status
+from rest_framework.test import APITestCase
 
-    def test_users_script(self):
-        test_exp = 50
-        user = CustomUser.objects.filter(username='fra').first()
-        old_exp = user.exp
-        increase_user_level(user, test_exp)
-        self.assertEqual(user.exp, old_exp + test_exp)
+from users.models import CustomUser, ExpMap
+from users.scripts import increase_user_level
 
-    def test_user_login(self):
+class TestUsers(TestCase):
+
+    def test_users(self):
+
+        name = 'test'
+        email = 'email@test.it'
+        pwd = 'TestPwd0'
         c = Client()
-        response = c.post('/rest-auth/login/', {'username': 'fra', 'password': 'fra'})
-        self.assertEqual(response.status_code, 200)
+
+        response = c.post('/rest-auth/registration/', {'username': name, 'email': email, 'password1': pwd, 'password2': pwd})
+        self.assertTrue(status.is_success(response.status_code))
+
+        user = CustomUser.objects.filter(username=name).first()
+        self.assertEqual(user.coins, 1000)
+        self.assertEqual(user.level, 1)
+        self.assertEqual(user.exp, 0)
+
+        response = c.post('/rest-auth/login/', {'username': name, 'password': pwd})
+        self.assertTrue(status.is_success(response.status_code))
+
+        needed_exp = ExpMap.objects.get(level=user.level)
+        old_level = user.level
+        new_exp = needed_exp.exp_for_next_level - 1
+        old_exp = user.exp
+
+        increase_user_level(user, new_exp)
+        self.assertEqual(user.exp, old_exp + new_exp)
+
+        increase_user_level(user, 1)
+        self.assertEqual(user.level, old_level + 1)
+
+        response = c.post('/rest-auth/logout/')
+        self.assertTrue(status.is_success(response.status_code))

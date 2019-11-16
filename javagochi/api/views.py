@@ -43,7 +43,6 @@ class JavagochiBuyView(CreateAPIView):
     serializer_class = JavagochiSerializer
 
     def create(self, validated_data):
-        print(self.request.data)
         usr = self.request.data['user']
         type = self.request.data['race']
         nickname = self.request.data['nickname']

@@ -2,9 +2,9 @@ from users.models import CustomUser, ExpMap
 from consts import *
 
 def increase_user_level(user, amount_to_increase):
-    print(("Increasing experience of {} by {} (starting from {})").format(user.username, str(amount_to_increase), user.exp))
+    # print(("Increasing experience of {} by {} (starting from {})").format(user.username, str(amount_to_increase), user.exp))
     if(user.level >= MAX_USER_LEVEL):
-        print(("{} already reached maximum level. Returning").format(user.username))
+        # print(("{} already reached maximum level. Returning").format(user.username))
         return
 
     needed_exp = ExpMap.objects.get(level=user.level)
