@@ -68,9 +68,9 @@ class JavagochiBuyView(CreateAPIView):
             jc.save()
             return Response("Correctly added the javagochi to your list", status=status.HTTP_201_CREATED)
         elif(user.level < race.min_user_level):
-            return Response("You are not experienced enough to have this Javagochi", status=status.HTTP_204_NO_CONTENT)
+            return Response("You are not experienced enough to have this Javagochi", status=status.HTTP_201_CREATED)
         else:
-            return Response("Not enough money", status=status.HTTP_204_NO_CONTENT)
+            return Response("Not enough money", status=status.HTTP_201_CREATED)
 
 class UseItemView(UpdateAPIView):
     queryset = Javagochi.objects.all()
@@ -83,7 +83,7 @@ class UseItemView(UpdateAPIView):
         if(scripts.use_item(jc_id, item, user)):
             return Response("Successfully used the item", status=status.HTTP_200_OK)
         else:
-            return Respons("Not enough items", status=status.HTTP_204_NO_CONTENT)
+            return Respons("Not enough items", status=status.HTTP_201_CREATED)
 
 class JavagochiChallengeView(UpdateAPIView):
     queryset = Javagochi.objects.all()
