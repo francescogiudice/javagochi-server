@@ -40,7 +40,7 @@ class Command(BaseCommand):
             return
 
         if(owner.level < race.min_user_level and owner.is_superuser == False):
-            print("Cannot add {} to the database ({} has too low level and is not admin)".format(nickname, owner_username))
+            # print("Cannot add {} to the database ({} has too low level and is not admin)".format(nickname, owner_username))
             return
 
         jc = Javagochi.objects.create(nickname= nickname,

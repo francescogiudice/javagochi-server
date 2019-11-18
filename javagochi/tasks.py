@@ -35,7 +35,7 @@ logger = get_task_logger(__name__)
     ignore_result=True
 )
 def update_javagochis():
-    print("Starting server update")
+    # print("Starting server update")
     logger.info("Starting Javagochis update...")
 
     javagochis = Javagochi.objects.filter(owner__is_superuser=False)

@@ -44,10 +44,6 @@ class ChangeUserInfoView(UpdateAPIView):
         new_username = request.data['username']
         new_email = request.data['email']
         new_password = request.data['password']
-        print(new_username)
-        print(new_email)
-        print(new_password)
-        print(kwargs)
         queryset = self.filter_queryset(self.get_queryset())
         user = queryset.get(username=kwargs['username'])
         user.username = new_username
@@ -71,7 +67,6 @@ class JavagochiOwnedView(ListAPIView):
     serializer_class = JavagochiSerializer
 
     def get_queryset(self):
-        print(self.request)
         owner = self.kwargs['username']
         return Javagochi.objects.filter(owner__username=owner)
 

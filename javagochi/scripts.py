@@ -10,12 +10,13 @@ from consts import *
 def check_if_evolves(javagochi):
     if(javagochi.current_level >= javagochi.race.evolves_at):
         javagochi.race = javagochi.race.evolves_into
+        javagochi.current_health = javagochi.race.max_health
         javagochi.save()
 
 def increase_javagochi_level(javagochi, amount_to_increase):
-    print(("Increasing experience of {} by {} (starting from {})").format(javagochi.nickname, str(amount_to_increase), javagochi.current_experience))
+    # print(("Increasing experience of {} by {} (starting from {})").format(javagochi.nickname, str(amount_to_increase), javagochi.current_experience))
     if(javagochi.current_level >= MAX_JAVAGOCHI_LEVEL):
-        print(("{} already reached maximum level. Returning").format(javagochi.nickname))
+        # print(("{} already reached maximum level. Returning").format(javagochi.nickname))
         return
 
     needed_exp = JavagochiExpMap.objects.get(level=javagochi.current_level)
@@ -53,12 +54,12 @@ def hunger(javagochi, item):
     use_item_and_save(item)
 
 def cold(javagochi, item):
-    javagochi.current_cold = max(javagochi.current_hunger - item.item.amount_modified, 0)
+    javagochi.current_cold = max(javagochi.current_cold - item.item.amount_modified, 0)
     javagochi.save()
     use_item_and_save(item)
 
 def hot(javagochi, item):
-    javagochi.current_hot = max(javagochi.current_hunger - item.item.amount_modified, 0)
+    javagochi.current_hot = max(javagochi.current_hot - item.item.amount_modified, 0)
     javagochi.save()
     use_item_and_save(item)
 

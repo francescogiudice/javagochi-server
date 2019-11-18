@@ -54,4 +54,4 @@ class ItemBuyView(CreateAPIView):
             itemObj.save()
             return Response("Correctly added the item to your inventory", status=status.HTTP_201_CREATED)
         else:
-            return Response("Not enough money", status=status.HTTP_400_BAD_REQUEST)
+            return Response("Not enough money", status=status.HTTP_204_NO_CONTENT)

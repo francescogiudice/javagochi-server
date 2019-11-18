@@ -68,9 +68,9 @@ class JavagochiBuyView(CreateAPIView):
             jc.save()
             return Response("Correctly added the javagochi to your list", status=status.HTTP_201_CREATED)
         elif(user.level < race.min_user_level):
-            return Response("You are not experienced enough to have this Javagochi", status=status.HTTP_403_FORBIDDEN)
+            return Response("You are not experienced enough to have this Javagochi", status=status.HTTP_204_NO_CONTENT)
         else:
-            return Response("Not enough money", status=status.HTTP_400_BAD_REQUEST)
+            return Response("Not enough money", status=status.HTTP_204_NO_CONTENT)
 
 class UseItemView(UpdateAPIView):
     queryset = Javagochi.objects.all()
@@ -83,14 +83,13 @@ class UseItemView(UpdateAPIView):
         if(scripts.use_item(jc_id, item, user)):
             return Response("Successfully used the item", status=status.HTTP_200_OK)
         else:
-            return Respons("Not enough items", status=status.HTTP_400_BAD_REQUEST)
+            return Respons("Not enough items", status=status.HTTP_204_NO_CONTENT)
 
 class JavagochiChallengeView(UpdateAPIView):
     queryset = Javagochi.objects.all()
     serializer_class = JavagochiSerializer
 
     def update(self, request, *args, **kwargs):
-        print(request.data)
         id_challenger = request.data['id_challenger']
         id_challenged = kwargs['id']
         challenger = Javagochi.objects.filter(id=id_challenger).first()
